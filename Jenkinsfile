@@ -4,7 +4,9 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh './app.sh'
+        sh '''
+            chmod +x app.sh
+            ./app.sh'''
       }
     }
 
