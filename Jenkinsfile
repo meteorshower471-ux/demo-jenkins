@@ -1,20 +1,13 @@
-pipeline {
-  agent any
+stage('Publish HTML') {
+  agent { label 'worker-1' }
 
-  stages {
-    stage('Checkout') {
-      steps {
-        echo 'Code checked out from GitHub'
-      }
-    }
-
-   stage('Run Script') {
   steps {
-    sh '''
-      chmod +x app.sh
-      ./app.sh
-    '''
-   }
+    publishHTML([
+      reportDir: 'output',
+      reportFiles: 'index.html',
+      reportName: 'Pipeline Output',
+      keepAll: true,
+      alwaysLinkToLastBuild: true
+    ])
   }
- }
 }
