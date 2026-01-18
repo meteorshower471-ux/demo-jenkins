@@ -8,10 +8,13 @@ pipeline {
       }
     }
 
-    stage('Run Script') {
-      steps {
-        sh './app.sh'
-      }
-    }
+   stage('Run Script') {
+  steps {
+    sh '''
+      chmod +x app.sh
+      ./app.sh
+    '''
+   }
   }
+ }
 }
