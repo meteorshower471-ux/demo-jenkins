@@ -1,13 +1,21 @@
-stage('Publish HTML') {
+pipeline {
   agent { label 'worker-1' }
 
-  steps {
-    publishHTML([
-      reportDir: 'output',
-      reportFiles: 'index.html',
-      reportName: 'Pipeline Output',
-      keepAll: true,
-      alwaysLinkToLastBuild: true
-    ])
+  stages {
+    stage('Build') {
+      steps {
+        sh './app.sh'
+      }
+    }
+
+    stage('Publish HTML') {
+      steps {
+        publishHTML([
+          reportDir: 'output',
+          reportFiles: 'index.html',
+          reportName: 'Pipeline Output'
+        ])
+      }
+    }
   }
 }
