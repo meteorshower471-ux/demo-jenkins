@@ -1,6 +1,11 @@
 #!/bin/bash
 
-echo "Jenkins build started"
-echo "Running on host: $(hostname)"
-echo "Current user: $(whoami)"
-echo "Build finished successfully"
+mkdir -p output
+
+cat <<EOF > output/index.html
+<html>
+  <body>
+    <h1>Jenkins Pipeline Ran Successfully</h1>
+  </body>
+</html>
+EOF
